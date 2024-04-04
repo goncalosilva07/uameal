@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    UA Meal
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="./nucleo-icons.css" rel="stylesheet" />
+  <link href="./nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- CSS Files -->
+  <link id="pagestyle" href="./argon-dashboard.css" rel="stylesheet" />
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body class="g-sidenav-show   bg-gray-100">
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  <aside
+    class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
+    id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="./home.html">
+        <img src="./images/logo.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold">UA Meal</span>
+      </a>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="../pages/dashboard.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/tickets.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">            
+              <span class="material-symbols-rounded" style="font-size: 20px; font-weight: 300; color: #5e72e4 !important;">
+                lunch_dining
+                </span>
+            </div>
+            <span class="nav-link-text ms-1">Senhas</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+    <hr class="horizontal dark mt-0">
+    <div class="sidenav-footer mx-3 ">
+      <div class="card card-plain shadow-none" id="sidenavCard">
+        <img class="w-40 mx-auto" src="./images/avatarDefault.png" alt="sidebar_illustration">
+        <div class="card-body text-center p-3 w-100 pt-0">
+          <div class="user-info">
+            <h6 class="mb-0 userNameDisplay"></h6>
+            <p class="text-xs font-weight-bold mb-0 userCourseDisplay"></p>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-danger btn-sm mb-0 w-100 logoutBtn" type="button">Logout</a>
+    </div>
+  </aside>
+  <main class="main-content position-relative border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
+      data-scroll="false">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
+          </ol>
+          <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+        </nav>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Saldo</p>
+                    <h5 class="font-weight-bolder userBalance">
+                    </h5>
+                    <p class="mb-0 userBalanceLastOperation">
+                      
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Data</p>
+                    <h5 class="font-weight-bolder todayDate">
+                    </h5>
+                    <p class="mb-0 weekday">
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Metereologia</p>
+                    <h5 class="font-weight-bolder meteorologyTemperature">
+
+                    </h5>
+                    <p class="mb-0 meteorologyCity">
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div
+                    class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle meteorologyIcon">
+                    <!--<i class="meteorologyIcon text-lg opacity-10" aria-hidden="true"></i>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Próxima Refeição</p>
+                    <h5 class="font-weight-bolder userNextMealDate">
+                    </h5>
+                    <p class="mb-0 userNextMeal">
+                     
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <span class="material-symbols-rounded ni text-lg opacity-10" style="margin-top: 13px; color: #fffffff2;">
+                      lunch_dining
+                      </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+          <div class="card ">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Transações</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center ">
+                <tbody class="transactionsTableBody">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+          <div class="card ">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Senhas</h6>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center ">
+                <tbody class="ticketsTableBody">
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+</body>
+
+</html>
+
+<script>
+
+  var mecNumber = null;
+  var userInfo = null;
+
+  function getDashboardInitialData() {
+
+    mecNumber = localStorage.getItem("mecNumber");
+    name = localStorage.getItem("name");
+    enc = localStorage.getItem("enc");
+
+    moment.updateLocale('pt', {
+      months: [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
+        "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+      ],
+      weekdays: [
+        "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira",
+        "Sexta-feira", "Sábado"
+      ]
+    });
+
+    if (mecNumber != null && name != null && enc != null) {
+      var obj = {
+        mecNumber: parseInt(mecNumber),
+        name: name,
+        enc: enc
+      };
+
+      $.ajax({
+        url: "http://127.0.0.1:5000/getDashboardInitialData",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(obj),
+        success: function (data) {
+          userInfo = data.user;
+          userTransactions = data.transactions;
+          userTickets = data.tickets;
+
+          var todayDate = moment().format("YYYY-MM-DD");
+
+          $(".userNameDisplay").html(userInfo.name);
+          $(".userCourseDisplay").html(userInfo.course);
+          $(".userBalance").html(userInfo.balance + "€");
+
+          $(".todayDate").html(moment().locale('pt').format('DD [de] MMMM [de] YYYY'));
+          $(".weekday").html(moment().locale('pt').format('dddd'));
+
+          if (userTransactions.length > 0) {
+            $.each(userTransactions, function (index, value) {
+
+              var htmlToAppend = '<tr>' +
+                '<td class="w-10">' +
+                '<div class="d-flex px-2 py-1 align-items-center">' +
+                '<div>' +
+                (value.transactionValue > 0 ? '<i class="ni ni-fat-add"></i>' : '<i class="ni ni-fat-delete"></i>') +
+                '</div>' +
+                '<div class="ms-4">' +
+                '<p class="text-xs font-weight-bold mb-0">Data:</p>' +
+                '<h6 class="text-sm mb-0">' + value.date + '</h6>' +
+                '</div>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Operação:</p>' +
+                '<h6 class="text-sm mb-0">' + value.operation + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Saldo Inicial:</p>' +
+                '<h6 class="text-sm mb-0">' + value.balanceBeforeTransaction + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Valor:</p>' +
+                '<h6 class="text-sm mb-0">' + value.transactionValue + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td class="align-middle text-sm">' +
+                '<div class="col text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Saldo Final:</p>' +
+                '<h6 class="text-sm mb-0">' + value.balanceAfterTransaction + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '</tr>';
+
+              $(".transactionsTableBody").append(htmlToAppend);
+
+              if(index == 0)
+                $(".userBalanceLastOperation").html(value.operation + ": " + value.transactionValue + "€");
+
+            });
+          } else {
+            $(".userBalanceLastOperation").html("-");
+            var htmlToAppend = ' <div style="text-align: center; margin: 100px;">SEM TRANSAÇÕES</div>';
+            $(".transactionsTableBody").append(htmlToAppend);
+          }
+
+
+          if (userTickets.length > 0) {
+            var lastDate = null;
+
+            $.each(userTickets, function (index, value) {            
+              var htmlToAppend = '<tr>' +
+                '<td class="w-10">' +
+                '<div class="d-flex px-2 py-1 align-items-center">' +
+                '<div>' +
+                (value.date > todayDate ? '<i class="ni ni-fat-add"></i>' : '<i class="ni ni-fat-delete"></i>') +
+                '</div>' +
+                '<div class="ms-4">' +
+                '<p class="text-xs font-weight-bold mb-0">Data:</p>' +
+                '<h6 class="text-sm mb-0">' + value.date + '</h6>' +
+                '</div>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Prato Principal:</p>' +
+                '<h6 class="text-sm mb-0">' + value.meal + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Bebida:</p>' +
+                '<h6 class="text-sm mb-0">' + (value.drink == null ? "SEM BEBIDA" : value.drink) + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Sobremesa:</p>' +
+                '<h6 class="text-sm mb-0">' + (value.dessert == null ? "SEM SOBREMESA" : value.dessert) + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td class="align-middle text-sm">' +
+                '<div class="col text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Preço:</p>' +
+                '<h6 class="text-sm mb-0">' + value.price + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '</tr>';
+
+              $(".ticketsTableBody").append(htmlToAppend);
+              
+
+              if((value.date < lastDate && value.date > todayDate) || index == 0){
+                lastDate = value.date;
+
+                if(moment(todayDate).add(1, "d").format("YYYY-MM-DD") == moment(value.date).format("YYYY-MM-DD")){
+                  $(".userNextMealDate").html("Amanhã");
+                }else
+                  $(".userNextMealDate").html(moment(value.date).locale("pt").format("DD [de] MMMM [de] YYYY"));
+               
+                  //$(".userNextMeal").html(value.meal + (value.drink != null ? (" + " + value.drink) : "") + (value.dessert != null ? (" + " + value.dessert) : ""))
+                  $(".userNextMeal").html(value.meal)
+              }
+                 
+            });
+          } else {
+            //$(".userBalanceLastOperation").html("-");
+            var htmlToAppend = ' <div style="text-align: center; margin: 100px;">SEM SENHAS</div>';
+            $(".ticketsTableBody").append(htmlToAppend);
+
+          }
+
+          var apiKey = 'a35bb5ec05b5921304c3baf20ed9cea6'; // chave de API OpenWeatherMap
+          var cidade = 'Oliveira de Azeméis';
+          var url = 'https://api.openweathermap.org/data/2.5/weather?q=' + cidade + '&appid=' + apiKey;
+
+          $.getJSON(url, function (data) {
+            var temperatura = Math.round(data.main.temp - 273.15); // Conversão de Kelvin para Celsius                      
+            var icon = 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
+            var city = data.name;
+
+            $(".meteorologyTemperature").html(temperatura + "°C");
+            $(".meteorologyCity").html(city);
+            $(".meteorologyIcon").html("<img src='" + icon + "'>");
+          });
+        },
+        error: function () {
+          alert("Problema de autenticação! Efetue a autenticação novamente.")
+          var url = "index.html";
+          window.location.href = url;
+        }
+      });
+
+    } else {
+      alert("Problema de autenticação! Efetue a autenticação novamente.")
+      var url = "index.html";
+      window.location.href = url;
+    }
+  }
+
+  $(document).ready(function () {
+
+    getDashboardInitialData();
+
+    $(".logoutBtn").on("click", function (e) {
+      localStorage.clear();
+      var url = "index.html";
+      window.location.href = url;
+    });
+  });
+
+
+</script>
