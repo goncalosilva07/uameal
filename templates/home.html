@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<div class="row mt-4">
+  <div class="col-lg-12 mb-lg-0 mb-4">
+    <div class="card ">
+      <div class="card-header pb-0 p-3">
+        <div class="d-flex justify-content-between">
+          <h6 class="mb-2">Transações</h6>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center ">
+          <tbody class="transactionsTableBody">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-lg-12 mb-lg-0 mb-4">
+    <div class="card ">
+      <div class="card-header pb-0 p-3">
+        <div class="d-flex justify-content-between">
+          <h6 class="mb-2">Senhas</h6>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center ">
+          <tbody class="ticketsTableBody">
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
+
+<script>
+
+  function getDashboardInitialData() {
+    debugger;
+    if (contentHub.mecNumber != null && contentHub.name != null && contentHub.enc != null) {
+      var obj = {
+        mecNumber: parseInt(contentHub.mecNumber),
+        name: contentHub.name,
+        enc: contentHub.enc
+      };
+
+      $.ajax({
+        url: "http://127.0.0.1:5000/getDashboardInitialData",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(obj),
+        success: function (data) {
+          userTransactions = data.transactions;
+          userTickets = data.tickets;
+    
+          var todayDate = moment().format("YYYY-MM-DD");
+
+          if (userTransactions.length > 0) {
+            $.each(userTransactions, function (index, value) {
+
+              var htmlToAppend = '<tr>' +
+                '<td class="w-10">' +
+                '<div class="d-flex px-2 py-1 align-items-center">' +
+                '<div>' +
+                (value.transactionValue > 0 ? '<i class="ni ni-fat-add"></i>' : '<i class="ni ni-fat-delete"></i>') +
+                '</div>' +
+                '<div class="ms-4">' +
+                '<p class="text-xs font-weight-bold mb-0">Data:</p>' +
+                '<h6 class="text-sm mb-0">' + value.date + '</h6>' +
+                '</div>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Operação:</p>' +
+                '<h6 class="text-sm mb-0">' + value.operation + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Saldo Inicial:</p>' +
+                '<h6 class="text-sm mb-0">' + value.balanceBeforeTransaction + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Valor:</p>' +
+                '<h6 class="text-sm mb-0">' + value.transactionValue + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td class="align-middle text-sm">' +
+                '<div class="col text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Saldo Final:</p>' +
+                '<h6 class="text-sm mb-0">' + value.balanceAfterTransaction + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '</tr>';
+
+              $(".transactionsTableBody").append(htmlToAppend);
+
+              if (index == 0)
+                $(".userBalanceLastOperation").html(value.operation + ": " + value.transactionValue + "€");
+
+            });
+          } else {
+            $(".userBalanceLastOperation").html("-");
+            var htmlToAppend = ' <div style="text-align: center; margin: 100px;">SEM TRANSAÇÕES</div>';
+            $(".transactionsTableBody").append(htmlToAppend);
+          }
+
+
+          if (userTickets.length > 0) {
+            var lastDate = null;
+
+            $.each(userTickets, function (index, value) {
+              var htmlToAppend = '<tr>' +
+                '<td class="w-10">' +
+                '<div class="d-flex px-2 py-1 align-items-center">' +
+                '<div>' +
+                (value.date > todayDate ? '<i class="ni ni-fat-add"></i>' : '<i class="ni ni-fat-delete"></i>') +
+                '</div>' +
+                '<div class="ms-4">' +
+                '<p class="text-xs font-weight-bold mb-0">Data:</p>' +
+                '<h6 class="text-sm mb-0">' + value.date + '</h6>' +
+                '</div>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Prato Principal:</p>' +
+                '<h6 class="text-sm mb-0">' + value.meal + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Bebida:</p>' +
+                '<h6 class="text-sm mb-0">' + (value.drink == null ? "SEM BEBIDA" : value.drink) + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td>' +
+                '<div class="text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Sobremesa:</p>' +
+                '<h6 class="text-sm mb-0">' + (value.dessert == null ? "SEM SOBREMESA" : value.dessert) + '</h6>' +
+                '</div>' +
+                '</td>' +
+                '<td class="align-middle text-sm">' +
+                '<div class="col text-center">' +
+                '<p class="text-xs font-weight-bold mb-0">Preço:</p>' +
+                '<h6 class="text-sm mb-0">' + value.price + '€</h6>' +
+                '</div>' +
+                '</td>' +
+                '</tr>';
+
+              $(".ticketsTableBody").append(htmlToAppend);
+
+
+              if ((value.date < lastDate && value.date > todayDate) || index == 0) {
+                lastDate = value.date;
+
+                if (moment(todayDate).add(1, "d").format("YYYY-MM-DD") == moment(value.date).format("YYYY-MM-DD")) {
+                  $(".userNextMealDate").html("Amanhã");
+                } else
+                  $(".userNextMealDate").html(moment(value.date).locale("pt").format("DD [de] MMMM [de] YYYY"));
+
+                //$(".userNextMeal").html(value.meal + (value.drink != null ? (" + " + value.drink) : "") + (value.dessert != null ? (" + " + value.dessert) : ""))
+                $(".userNextMeal").html(value.meal)
+              }
+
+            });
+          } else {
+            //$(".userBalanceLastOperation").html("-");
+            var htmlToAppend = ' <div style="text-align: center; margin: 100px;">SEM SENHAS</div>';
+            $(".ticketsTableBody").append(htmlToAppend);
+          }
+        },
+        error: function () {
+          alert("Home")
+          /*
+          alert("Problema de autenticação! Efetue a autenticação novamente.")
+          var url = "index.html";
+          window.location.href = url;
+          */
+        }
+      });
+
+    } else {
+      alert("Problema de autenticação! Efetue a autenticação novamente.")
+      var url = "/";
+      window.location.href = url;
+    }
+  }
+
+  $(document).ready(function () {
+
+    getDashboardInitialData();
+
+  });
+
+
+</script>
